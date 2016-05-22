@@ -26,7 +26,7 @@ The formula for Simple Principal Interest is:
 
 * It uses default page Layout.
 * Text Fields has been used to enter numeric inputs, Principal,Interest Rate and Years requried for Simple Principal Interest calculations.
-```{r results='hide'}
+```{r eval=FALSE}
 textInput('principal', 'Principal', value = "")
 textInput('rate', 'Interest Rate', value = "")
 textInput('years', 'years', value = "")
@@ -76,5 +76,4 @@ calculateInterest <- function(principal, rate, years) {
 
 * This is a simple and handy application to calculate Simple Principal Interest.
 * This application can also be helpful to demonstrate and learn basis of Shiny application.
-* Source Code for the is available at here.
 

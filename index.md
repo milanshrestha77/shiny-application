@@ -79,5 +79,4 @@ calculateInterest <- function(principal, rate, years) {
 
 * This is a simple and handy application to calculate Simple Principal Interest.
 * This application can also be helpful to demonstrate and learn basis of Shiny application.
-* Source Code for the is available at here.
 
