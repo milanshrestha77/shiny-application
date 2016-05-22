@@ -1,0 +1,83 @@
+---
+title       : Simple Principal Interest Calculator 
+subtitle    : Application to calculate Simple Principal Interest
+author      : Milan Shrestha
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Introduction
+
+This application can be used to calucate Simple Principal Interest.
+
+The formula for Simple Principal Interest is:
+
+     Amount = Principal*( 1+Interest_Rate*Year) 
+
+
+--- .class #id 
+
+## The ui.R File
+
+* It uses default page Layout.
+* Text Fields has been used to enter numeric inputs, Principal,Interest Rate and Years requried for Simple Principal Interest calculations.
+
+```r
+textInput('principal', 'Principal', value = "")
+textInput('rate', 'Interest Rate', value = "")
+textInput('years', 'years', value = "")
+```
+
+* The results are shown as simple text but sufficient for for this purpose.
+
+---
+
+## The server.R File
+
+* Takes the input from client and stores in 3 variables.
+
+
+```r
+output$principal <- renderPrint({as.numeric(input$principal)})
+output$rate <- renderPrint({as.numeric(input$rate)})
+output$years <- renderPrint({as.numeric(input$years)})
+```
+* calculates and Renders the Output
+
+
+```r
+output$outputValue <- renderText({
+            if (input$goButton == 0) "Please click Go button once to start calulating Interest"
+            else if (input$goButton >= 1) 
+                calculateInterest(as.numeric(input$principal),
+                                  as.numeric(input$rate),as.numeric(input$years))
+        })
+```
+
+---
+
+## Calculation
+
+* Separate function (calcuateInterest) has been created to calculate Interest. 
+* This method takes 3 parameters (principal,Interest and years)
+
+
+```r
+calculateInterest <- function(principal, rate, years) {
+    principal*(1+rate*years)
+}
+```
+
+----
+
+## Conclusion
+
+* This is a simple and handy application to calculate Simple Principal Interest.
+* This application can also be helpful to demonstrate and learn basis of Shiny application.
+* Source Code for the is available at here.
+

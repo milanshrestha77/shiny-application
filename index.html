@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Principal Interest Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Simple Principal Interest Calculator">
+  <meta name="author" content="Milan Shrestha">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Simple Principal Interest Calculator</h1>
+    <h2>Application to calculate Simple Principal Interest</h2>
+    <p>Milan Shrestha<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application can be used to calucate Simple Principal Interest.</p>
+
+<p>The formula for Simple Principal Interest is:</p>
+
+<pre><code> Amount = Principal*( 1+Interest_Rate*Year) 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The ui.R File</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>It uses default page Layout.</li>
+<li>Text Fields has been used to enter numeric inputs, Principal,Interest Rate and Years requried for Simple Principal Interest calculations.</li>
+</ul>
+
+<pre><code class="r">textInput(&#39;principal&#39;, &#39;Principal&#39;, value = &quot;&quot;)
+textInput(&#39;rate&#39;, &#39;Interest Rate&#39;, value = &quot;&quot;)
+textInput(&#39;years&#39;, &#39;years&#39;, value = &quot;&quot;)
+</code></pre>
+
+<ul>
+<li>The results are shown as simple text but sufficient for for this purpose.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>The server.R File</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Takes the input from client and stores in 3 variables.</li>
+</ul>
+
+<pre><code class="r">output$principal &lt;- renderPrint({as.numeric(input$principal)})
+output$rate &lt;- renderPrint({as.numeric(input$rate)})
+output$years &lt;- renderPrint({as.numeric(input$years)})
+</code></pre>
+
+<ul>
+<li>calculates and Renders the Output</li>
+</ul>
+
+<pre><code class="r">output$outputValue &lt;- renderText({
+            if (input$goButton == 0) &quot;Please click Go button once to start calulating Interest&quot;
+            else if (input$goButton &gt;= 1) 
+                calculateInterest(as.numeric(input$principal),
+                                  as.numeric(input$rate),as.numeric(input$years))
+        })
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Calculation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Separate function (calcuateInterest) has been created to calculate Interest. </li>
+<li>This method takes 3 parameters (principal,Interest and years)</li>
+</ul>
+
+<pre><code class="r">calculateInterest &lt;- function(principal, rate, years) {
+    principal*(1+rate*years)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Conclusion</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is a simple and handy application to calculate Simple Principal Interest.</li>
+<li>This application can also be helpful to demonstrate and learn basis of Shiny application.</li>
+<li>Source Code for the is available at here.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The ui.R File'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The server.R File'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Calculation'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Conclusion'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
