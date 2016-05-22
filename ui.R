@@ -5,7 +5,7 @@ shinyUI( pageWithSidebar(
     headerPanel("Interest Calulator"),
     sidebarPanel(
         textInput('principal', 'Principal', value = ""),
-        textInput('rate', 'Interest Rate', value = ""),
+        textInput('rate', 'Interest Rate (R/100,ie .12 is 12%)', value = ""),
         textInput('years', 'years', value = ""),
         actionButton("goButton", "Go!")
     ), 
